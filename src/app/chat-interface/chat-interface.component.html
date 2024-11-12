@@ -1,0 +1,51 @@
+<div class="chat-container">
+  <header>
+    <h1>AI Assistant</h1>
+    <div class="header-actions">
+      @if (currentUser$ | async; as user) {
+        <div class="user-profile">
+          <div class="user-avatar">{{ getInitials(user.name) }}</div>
+          <span class="user-name">{{ user.name }}</span>
+        </div>
+      }
+      <button class="theme-toggle" (click)="toggleTheme()">
+        @if (isDarkTheme$ | async) {
+          <span>🌞 Light</span>
+        } @else {
+          <span>🌙 Dark</span>
+        }
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <div #chatContainer class="messages-container">
+      @for (msg of currentChat.messages; track msg.timestamp) {
+        <chat-message [message]="msg"></chat-message>
+      }
+      
+      @if (isTyping) {
+        <div class="typing-indicator">
+          AI is typing...
+        </div>
+      }
+    </div>
+  </main>
+
+  <footer>
+    <form (ngSubmit)="sendMessage()">
+      <input
+        type="text"
+        [(ngModel)]="newMessage"
+        name="message"
+        placeholder="Type your message..."
+      >
+      <button
+        type="submit"
+        [disabled]="!newMessage.trim()"
+      >
+        Send
+      </button>
+    </form>
+  </footer>
+</div>

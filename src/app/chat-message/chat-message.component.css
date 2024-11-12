@@ -1,0 +1,33 @@
+.message {
+  padding: 1rem;
+  margin: 0.5rem;
+  border-radius: 0.5rem;
+  max-width: 80%;
+  min-width: 200px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  position: relative;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.message p {
+  margin-bottom: 0.25rem;
+}
+
+.message small {
+  opacity: 0.7;
+  font-size: 0.75rem;
+  display: block;
+}
+
+.user-message {
+  background-color: var(--message-user-bg);
+  color: var(--message-user-text);
+  margin-left: auto;
+}
+
+.bot-message {
+  background-color: var(--message-bot-bg);
+  color: var(--message-bot-text);
+  margin-right: auto;
+}
